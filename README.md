@@ -1,48 +1,90 @@
-# Demo Page
-https://graphtool-demo.harutohiroki.com/
+# Feat/l10n (Localization)
 
-# Changes
-- Added Equalizer (cred to Rohsa)
-- Added Uploads
-- Added Targets
-- Added Website link on graph (cred to MRS)
-- Re-themed graph window
-- Re-done Frequency Range definitions
-- Changed parser to universal parser
-- Removed Restricted mode (cuz I want to keep it free)
-- Reorganised code
-- Moved targets to a different folder for organization
-- Moved phone_book outside for easier access
-- Added a function to average all active graphs (requested by listener)
-- Custom Diffuse Field Tilt (requested by listener)
-- Restyled EQ tab
-- EQable pink noise in EQ tab (requested by listener)
-- Added the ability to upload your own test track to EQ (requested by rollo)
-- Added a button to disable and enable all EQ bands (requested by SK)
-- Tone generator now EQable (requested by SK)
-- Added a Channel balance slider
-- Added a song progress slider to the EQ demo section (requested by XiaoShe)
-- Added Ear Gain customisation to custom tilt (requested by listener)
-- Made any target tiltable (requested by listener)
-- Added Treble customisation to custom tilt (requested by listener)
-- Added a button to swap between different y-axis scales (requested by rollo)
-- Added Preference Bounds and Preference Bound scaling (requested by listener)
-- Reversed the "any target tiltable" feature, now applying tilt on target automatically if supported (requested by listener)
-- Per-measurement compensation (requested by listener)
-- Added support for Haruto's Graph Extension to apply eq to browserwide 
-- Made Preference Bounds better and not relying on a png anymore
-- Downloadable CSV of all active graphs
-- Per page Y scaling (requested by listener)
-- Added a Graph Customisation menu
+This branch adds a new localization feature to the graphtool.
 
+- Add new Language Selector to the top right corner.
+- Add new 'translate.js' to handle language files.
+- Add new 'assets/lang' directory to store language files.
+- Slightly adjusts the layout of the graphtool to fit the new features.
 
-# TODO
-- Implement a way to measure the SPL of an IEM and decide whether to upload it or not, skipping REW
-  - ability to select which mic/output to use
-  - ability to select calibration files
-  - ability to apply smoothing
-- Trace Arithmetic
-- Realtime Analysis
+## Usage
 
-# P.S.
-- If you do implement code in here, do leave credits to the original author (me) and the contributors (Rohsa, MRS)
+Enable or disable features in `config.js`.
+
+```js
+// Allow the creator to have a button top right to support them
+allowLanguageSelector = true; 
+
+// List of available language codes. When you are adding a new language, make sure to use ISO 639-1 Language Codes for auto-detection.
+availableLanguages = ["en", "ko"]; 
+
+// Determine default language based on user's browser
+// You don't need to change this - unless you are setting fallback language from "en" to something else.
+defaultLanguage = (function () {
+  const browserLang = navigator.language.split("-")[0];
+  return availableLanguages.includes(browserLang) ? browserLang : "en";
+})(); 
+
+// If true, translated header link from language files will be used over the one from config.js
+// If false, the header data from config.js will be used.
+translateHeader = true; 
+
+// If true, translated tutorial from language files will be used over the one from config.js
+// If false, the tutorial data from config.js will be used.
+translateTutorial = true; 
+
+// If true, translated accessories from language files will be used over the one from config.js
+// If false, the accessories data from config.js will be used.
+translateAccessories = true; 
+```
+
+## Adding New Language
+
+To make sure your language is automatically detected by the browser, you need to find out the ISO 639-1 language code of your language.
+
+- [ISO 639-1 Language Codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+
+Please refer to the link above for more information.
+
+1. Add new language code to `config.js`
+```js
+availableLanguages = ["en", "ko"]; 
+```
+
+2. Add new .JSON language file to `assets/lang/`
+```
+/assets/lang/
+- en.json
+- ko.json
+```
+
+3. Edit the .JSON language file with the language you want to add.
+```json
+{
+  "header": {
+    "logoText": "Your Name",
+    "links": [
+      {
+        "name": "Your Link Name",
+        "url": "Your Link URL"
+      },
+      ...
+    ]
+  },
+  "tutorial": [
+    {
+      "name": "Your Tutorial Name",
+      "width": "Your Tutorial Width",
+      "description": "Your Tutorial Description"
+    },
+    ...
+  ],
+  "accessories": {
+    "content": "Your Accessories Content"
+  },
+  "main": {
+    ...
+  }
+}
+```
+Please refer to `assets/lang/ko.json` if you need more examples.
