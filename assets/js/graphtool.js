@@ -3888,7 +3888,23 @@ function addTutorial() {
         defOverlay.setAttribute("tutorial-def", def.name);
         defOverlay.setAttribute("tutorial-on", "false");
         defOverlay.className = "overlay-segment";
-        defOverlay.setAttribute("style", "flex-basis: "+ def.width +";")
+
+        if (!enableNonConfidenceIntervalTutorial && def.type === "NCI_warning") {
+            return;
+        } else if (enableNonConfidenceIntervalTutorial && def.type === "NCI_warning") {
+            // Append from right (Non-Confidence Interval)
+            defOverlay.style.position = "absolute";
+            defOverlay.style.right = "1.8%";
+            defOverlay.style.top = "2%";
+            defOverlay.style.bottom = "0";
+            defOverlay.style.width = def.width;
+            defOverlay.style.height = "92%";
+            defOverlay.style.marginLeft = "0";
+            defOverlay.style.backgroundColor = "red";
+        } else {
+            // Append from left
+            defOverlay.style.flexBasis = def.width;
+        }
         overlayContainer.append(defOverlay);
         
         defButton.setAttribute("tutorial-def", def.name);
