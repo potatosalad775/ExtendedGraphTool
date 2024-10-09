@@ -143,8 +143,16 @@ function updateTranslations() {
   const mobileHelperText = t.mobileHelper || "Browse all graphs";
   const mobileHelperTextStyle = document.createElement('style');
   mobileHelperTextStyle.textContent = `
-    tr.mobile-helper:before {
-      content: '${mobileHelperText}';
+    @media (max-width: 1000px) {
+      tr.mobile-helper:before {
+        content: '${mobileHelperText}';
+      }
+    }
+    @media (min-width: 1001px) {
+      tr.mobile-helper:before {
+        content: none;
+        display: none;
+      }
     }
   `;
   document.head.appendChild(mobileHelperTextStyle);
