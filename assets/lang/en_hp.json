@@ -68,5 +68,25 @@
     "exportParametricEQ": "Export Parametric EQ",
     "exportGraphicEQ": "Export Graphic EQ (Wavelet)",
     "autoEQRunning": "AutoEQ is running, it could take 5~20 seconds or more."
+  },
+  "alertMessages": {
+    "headphoneNotFound": "Headphone not found!",
+    "boundsNotFound": "Bounds not found!",
+    "customTiltNotSupported": "This target is not supported for Custom Tilt",
+    "parseFRFailed": "Parse frequence response file failed: invalid format.",
+    "targetAlreadyExists": "This target already exists on this tool, please select it instead of uploading.",
+    "noFiltersSelectedForSave": "Please select model and add at least one filter before saving.",
+    "parseFiltersFailed": "Parse filters file failed: no filter found.",
+    "noFiltersSelectedForExport": "Please add at least one filter before exporting.",
+    "equalizerReadMe": [
+      "1. If you want to AutoEQ model A to B, display A B and remove targets.",
+      "2. Adding/Removing bands before AutoEQ may give you a better results.",
+      "3. Using PK filters close to 20kHz is finnicky; avoid touching frequencies beyond 15kHz if you're not sure how your DSP software works.",
+      "4. EQing treble frequencies require resonant peak matching and fine-tuning by ear. Keep the treble regions untouched if you're new to EQing.",
+      "5. Use the Tone Generator inside EQ Demo dropdown to find the actual location of peaks and dips to your own ears. Do note that the web version may not work on some platforms."
+    ],
+    "autoEQFilterAlert": "Please select model and target, if there are no targets and multiple models are displayed then the second one will be selected as target.",
+    "webAudioNotSupported": "Web audio api is disabled, please enable it if you want to use EQ testing functions.",
+    "noAudioUploaded": "Please upload an audio file first."
   }
 }

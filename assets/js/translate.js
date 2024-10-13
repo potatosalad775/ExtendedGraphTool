@@ -1,17 +1,44 @@
-let currentLanguage = defaultLanguage;
+function loadCurrentLanguage() {
+  const _defLang = defaultLanguage || "en";
+
+  // If defaultLanguage is not included in the availableLanguages list, throw an alert
+  if (!availableLanguages.includes(_defLang)) {
+    alert('Warning: Default Language is not included in the Available Languages list.');
+  }
+  
+  // If the browser language is supported, use it, otherwise use the default language
+  if (useBrowserLangAsDefault) {
+    const browserLang = navigator.language.split('-')[0];
+    return availableLanguages.includes(browserLang) ? browserLang : _defLang;
+  } else {
+    return _defLang;
+  }
+}
+
+let currentLanguage = loadCurrentLanguage();
+let enStrings = {};
 let translations = {};
 
 async function loadTranslations(lang) {
   try {
+    // Load English strings if not already loaded
+    if (Object.keys(enStrings).length === 0) {
+      const enResponse = await fetch(`assets/lang/en.json`);
+      enStrings = await enResponse.json();
+    }
+
+    // Load translations for the specified language
     const response = await fetch(`assets/lang/${lang}.json`);
     translations = await response.json();
 
+    // Set up header, tutorial, and accessories content if the language is English
     if(lang == "en") {
       whichHeaderLogoTextToUse = headerLogoText;
       whichHeaderLinksToUse = headerLinks;
       whichTutorialDefinitionsToUse = tutorialDefinitions;
       whichAccessoriesToUse = simpleAbout;
     }
+    // Otherwise, use translated content
     else {
       if (translateHeader) {
         whichHeaderLogoTextToUse = translations.header.logoText || headerLogoText;
@@ -25,6 +52,7 @@ async function loadTranslations(lang) {
       }
     }
 
+    // Update the page translations
     updatePageTranslations();
   } catch (error) {
     console.error(`Failed to load translations for ${lang}:`, error);
@@ -46,6 +74,10 @@ function updatePageTranslations() {
   if (translateAccessories) {
     updateAccessoriesContent();
   }
+  // Update target types content
+  if (translateTargetTypes) {
+    updateTargetTypesContent();
+  }
 }
 
 // Initialize language system
@@ -55,82 +87,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Update Main Translations
 function updateTranslations() {
-  const t = translations.main || {}; // Use empty object as fallback
+  const t = translations.main || enStrings.main || {}; // Use empty object as fallback
 
   // Update text content for various elements
   //doc.select("#baseline-icon text").text(d => d === 'BASE' ? (t.base || 'BASE') : (t.line || '-LINE'));
-  doc.selectAll("#pin-icon text").text(t.pin || "PIN");
+  doc.selectAll("#pin-icon text").text(t.pin);
 
   // Left (Secondary) panel
   doc
     .selectAll(".selector-tabs button")
     .data([
-      t.selectBrands || "Brands",
-      t.selectModels || "Models",
-      t.selectEqualizer || "Equalizer",
+      t.selectBrands,
+      t.selectModels,
+      t.selectEqualizer,
     ])
     .text((d) => d);
   doc
     .select(".selector-panel .search")
-    .attr("placeholder", t.searchBar || "Search");
+    .attr("placeholder", t.searchBar);
 
   // Tools panel
-  doc.select("#copy-url").text(t.copyUrl || "Copy URL");
-  doc.select("#download-faux").text(t.screenshot || "Screenshot");
-  doc.select("#avg-all").text(t.averageAll || "Average All");
+  doc.select("#copy-url").text(t.copyUrl);
+  doc.select("#download-faux").text(t.screenshot);
+  doc.select("#avg-all").text(t.averageAll);
 
-  doc.select(".yscaler span").text(t.yAxisScale || "Y-axis Scale:");
+  doc.select(".yscaler span").text(t.yAxisScale);
 
-  doc.select(".zoom span").text(t.zoom || "Zoom:");
+  doc.select(".zoom span").text(t.zoom);
   doc
     .selectAll(".zoom button")
-    .data([t.bass || "Bass", t.mids || "Mids", t.treble || "Treble"])
+    .data([t.bass, t.mids, t.treble])
     .text((d) => d);
 
-  doc.select(".normalize span").text(t.normalize || "Normalize:");
+  doc.select(".normalize span").text(t.normalize);
 
-  doc.select(".smooth span").text(t.smooth || "Smooth:");
+  doc.select(".smooth span").text(t.smooth);
 
   doc
     .selectAll(".miscTools button")
     .data([
-      { id: "inspector", text: t.inspect || "inspect" },
-      { id: "label", text: t.label || "label" },
-      { id: "download", text: t.screenshot || "screenshot" },
-      { id: "recolor", text: t.recolor || "recolor" },
-      { id: "theme", text: t.darkmode || "Dark Mode" },
+      { id: "inspector", text: t.inspect },
+      { id: "label", text: t.label },
+      { id: "download", text: t.screenshot },
+      { id: "recolor", text: t.recolor },
+      { id: "theme", text: t.darkmode },
     ])
     .text((d) => d.text);
 
   // Custom DF
   doc
     .select(".customDF > span")
-    .text(t.preferenceAdjustments || "Preference Adjustments:");
+    .text(t.preferenceAdjustments);
   doc
     .selectAll(".customDF > div > span")
     .data([
-      t.tiltUnit || "Tilt (dB/Oct)",
-      t.bassUnit || "Bass (dB)",
-      t.trebleUnit || "Treble (dB)",
-      t.earGainUnit || "Ear Gain (dB)",
+      t.tiltUnit,
+      t.bassUnit,
+      t.trebleUnit,
+      t.earGainUnit,
     ])
     .text((d) => d);
 
   doc
     .select("#cusdf-UnTiltTHIS")
-    .text(t.removeAdjustments || "Remove Adjustments");
-  doc.select("#cusdf-harmanfilters").text(t.harmanFilters || "Harman Filters");
-  doc.select("#cusdf-bounds").text(t.preferenceBounds || "Preference Bounds");
+    .text(t.removeAdjustments);
+  doc.select("#cusdf-harmanfilters").text(t.harmanFilters);
+  doc.select("#cusdf-bounds").text(t.preferenceBounds);
 
   doc
     .select(".manageTable .helpText")
-    .text(
-      t.addHelp || "(or middle/ctrl-click when selecting; or pin other IEMs)"
-    );
-  doc.select(".manageTable .addLock").text(t.lock || "LOCK");
+    .text(t.addHelp);
+  doc.select(".manageTable .addLock").text(t.lock);
 
   // Tbody Alert
-  const alertText = t.selectModelAlert || "Select a model from the list below to graph its frequency response";
+  const alertText = t.selectModelAlert;
   const alertTextStyle = document.createElement('style');
   alertTextStyle.textContent = `
     tbody.curves:empty:before {
@@ -140,7 +170,7 @@ function updateTranslations() {
   document.head.appendChild(alertTextStyle);
 
   // Mobile Helper
-  const mobileHelperText = t.mobileHelper || "Browse all graphs";
+  const mobileHelperText = t.mobileHelper;
   const mobileHelperTextStyle = document.createElement('style');
   mobileHelperTextStyle.textContent = `
     @media (max-width: 1000px) {
@@ -158,94 +188,94 @@ function updateTranslations() {
   document.head.appendChild(mobileHelperTextStyle);
 
   // Equalizer panel
-  doc.select(".extra-panel h4").text(t.uploading || "Uploading");
-  doc.select(".upload-fr").text(t.uploadFR || "Upload FR");
-  doc.select(".upload-target").text(t.uploadTarget || "Upload Target");
-  doc.select(".upload-track").text(t.uploadSong || "Upload Song");
+  doc.select(".extra-panel h4").text(t.uploading);
+  doc.select(".upload-fr").text(t.uploadFR);
+  doc.select(".upload-target").text(t.uploadTarget);
+  doc.select(".upload-track").text(t.uploadSong);
   doc
     .select(".extra-upload small")
-    .text(t.uploadWarning || "Uploaded data will not be persistent");
+    .text(t.uploadWarning);
 
   doc
     .selectAll(".extra-eq h4")
     .data([
-      t.parametricEqualizer || "Parametric Equalizer",
-      t.autoEQ || "AutoEQ",
-      t.eqDemo || "EQ Demo",
-      t.miscellaneous || "Miscellaneous",
+      t.parametricEqualizer,
+      t.autoEQ,
+      t.eqDemo,
+      t.miscellaneous,
     ])
     .text((d) => d);
 
   doc
     .select(".select-eq-phone option")
-    .text(t.chooseEQModel || "Choose EQ model");
-  doc.select("#preamp-disp").text(`${t.preamp || "Pre-amp"}: 0.0 dB`);
+    .text(t.chooseEQModel);
+  doc.select("#preamp-disp").text(`${t.preamp}: 0.0 dB`);
 
   doc
     .selectAll(".filters-header span")
     .data([
-      t.type || "Type",
-      t.frequency || "Frequency",
-      t.gain || "Gain",
-      t.q || "Q",
+      t.type,
+      t.frequency,
+      t.gain,
+      t.q,
     ])
     .text((d) => d);
 
   //doc.select(".add-filter").text(t.add || '+');
   //doc.select(".remove-filter").text(t.remove || '-');
-  doc.select(".sort-filters").text(t.sort || "Sort");
-  doc.select(".disable-filters").text(t.disable || "Disable");
-  doc.select(".save-filters").text(t.saveEQ || "Save EQ");
+  doc.select(".sort-filters").text(t.sort);
+  doc.select(".disable-filters").text(t.disable);
+  doc.select(".save-filters").text(t.saveEQ);
 
   doc
     .selectAll(".settings-row [name='title']")
     .data([
-      t.autoEqFrequencyRange || "Frequency Range",
-      t.autoEqGainRange || "Gain Range",
-      t.autoEqQRange || "Q Range",
+      t.autoEqFrequencyRange,
+      t.autoEqGainRange,
+      t.autoEqQRange,
     ])
     .text((d) => d);
 
-  doc.select(".auto-eq-button .autoeq").text(t.autoEQ || "AutoEQ");
-  doc.select(".auto-eq-button .readme").text(t.readme || "Readme");
+  doc.select(".auto-eq-button .autoeq").text(t.autoEQ);
+  doc.select(".auto-eq-button .readme").text(t.readme);
 
   doc
     .selectAll(".eq-track option")
     .data([
-      t.pinkNoise || "Pink Noise",
-      t.scarletFire || "Scarlet Fire",
-      t.toneGenerator || "Tone Generator",
-      t.uploaded || "Uploaded",
+      t.pinkNoise,
+      t.scarletFire,
+      t.toneGenerator,
+      t.uploaded,
     ])
     .text((d) => d);
 
   doc
     .select("[name='tone-gen-range'] [name='title']")
-    .text(t.toneGeneratorRange || "Tone Generator Range");
+    .text(t.toneGeneratorRange);
   //doc.select("[name='current-freq']").text(`${t.freq || 'Freq'}: <span class="freq-text">20</span> Hz`);
 
-  doc.select(".settings-row [name='balance-l']").text(t.left || "Left");
+  doc.select(".settings-row [name='balance-l']").text(t.left);
   doc
     .select(".settings-row [name='balance-title']")
-    .text(t.channelBalance || "Channel Balance");
-  doc.select(".settings-row [name='balance-r']").text(t.right || "Right");
+    .text(t.channelBalance);
+  doc.select(".settings-row [name='balance-r']").text(t.right);
 
-  doc.select(".import-filters").text(t.importEQ || "Import EQ");
+  doc.select(".import-filters").text(t.importEQ);
   doc
     .select(".export-filters")
-    .text(t.exportParametricEQ || "Export Parametric EQ");
+    .text(t.exportParametricEQ);
   doc
     .select(".export-graphic-filters")
-    .text(t.exportGraphicEQ || "Export Graphic EQ (Wavelet)");
+    .text(t.exportGraphicEQ);
 
   doc
     .select(".extra-eq-overlay")
     .text(
-      t.autoEQRunning ||
-        "AutoEQ is running, it could take 5~20 seconds or more."
+      t.autoEQRunning
     );
 }
 
+// Update Header Content
 function updateHeaderContent() {
   const logoImgElement = document.querySelector(".logo a img");
   if (logoImgElement) {
@@ -265,6 +295,7 @@ function updateHeaderContent() {
   });
 }
 
+// Update Tutorial Content
 function updateTutorialContent() {
   const tutorialButtons = document.querySelectorAll(
     ".tutorial-buttons .button-segment"
@@ -284,6 +315,37 @@ function updateTutorialContent() {
   });
 }
 
+// Update Accessories Content
 function updateAccessoriesContent() {
   doc.select(".accessories aside").html(whichAccessoriesToUse || paragraphs);
+}
+
+// Update Target Types Content
+function updateTargetTypesContent() {
+  const targetTypeLabels = document.querySelectorAll(".targets div .targetLabel span");
+
+  targetTypeLabels.forEach((targetTypeLabel, i) => {
+    const targetType = targets[i].type;
+    if (currentLanguage === "en") {
+      targetTypeLabel.textContent = targetType;
+    } else {
+      targetTypeLabel.textContent = translations.targets[targetType] || targetType;
+    }
+  });
+
+  const targetLabels = document.querySelectorAll(".targets div .targetLabel");
+  targetLabels.forEach(label => {
+    const suffix = currentLanguage === "en" ? " Targets:" : ` ${translations.targets.TARGETS}:`;
+    label.setAttribute("targetLabelSuffix", suffix);
+  });
+}
+
+// Get Alert Message
+function getAlertMessage(key) {
+  // If translateAlertMessages is true, use translated alert messages, otherwise use English alert messages
+  if (translateAlertMessages) {
+    return translations.alertMessages[key] || enStrings.alertMessages[key];
+  } else {
+    return enStrings.alertMessages[key];
+  }
 }

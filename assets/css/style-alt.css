@@ -1002,7 +1002,7 @@ div.targets > div.targetLabel {
 }
 
 .targetClass div.targetLabel:after {
-    content: ' targets:';
+    content: attr(targetLabelSuffix);
     white-space: pre;
 }
 

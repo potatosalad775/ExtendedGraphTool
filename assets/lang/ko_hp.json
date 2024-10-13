@@ -23,42 +23,42 @@
   "tutorial": [
     {
       "name": "극저음",
-      "width": "16%",
       "description": "극저음은 일반적인 사람의 청각 범위를 벗어나는 특성이 있어, 이를 듣는다기보다 느낀다는 표현에 가까울법한 파워풀한 느낌을 줍니다."
     },
     {
       "name": "저음",
-      "width": "20.6%",
       "description": "소리의 \"두터운\" 또는 \"얇은\" 정도를 결정하며, 250hz 전후로 소리를 부스트하면 따뜻한 느낌을 더하는 경향이 있습니다. 저음을 좋아하신다면 이 음역대를 가장 좋아할 가능성이 높습니다."
     },
     {
       "name": "중저음",
-      "width": "10.1%",
       "description": "대부분 악기의 저차 고조파는 일반적으로 저음역대에 위치한다고 간주됩니다. 300Hz 전후의 신호를 부스트하면 저음 및 저음 악기의 선명도가 향상됩니다. 500Hz 주변에서 너무 많이 부스트하면 고음 악기 소리가 뭉개질 수 있습니다."
     },
     {
       "name": "중음",
-      "width": "20%",
       "description": "중음은 전반적인 사운드에서 악기가 얼마나 두드러지는지를 결정짓습니다. 약 1000Hz를 부스트하면 악기에 호른과 같은 음색을 줄 수 있습니다. 이 범위에서 과도한 출력은 소리가 작게 들리고 귀에 피로를 유발할 수 있습니다."
     },
     {
       "name": "중고음",
-      "width": "10%",
       "description": "중고음역대는 타악기 및 리듬 악기의 타격감을 담당합니다. 이 음역대를 부스트하면 존재감을 더할 수 있습니다. 그러나 3kHz 범위가 지나치게 강조되면 피로감을 유발할 수 있습니다."
     },
     {
       "name": "고음",
-      "width": "5.9%",
       "description": "고음은 사운드의 선명도과 명료함을 담당합니다. 과도하게 부스트하면 자극적이고 거친 사운드가 발생할 수 있습니다. 이 범위를 줄이면 소리가 더 멀고 투명하게 들립니다."
     },
     {
       "name": "초고음",
-      "width": "17.4%",
       "description": "초고음은 전적으로 고조파로만 구성되며 소리의 반짝임과 에어리함을 담당합니다. 이 영역을 과도하게 부스트하면 쉿 소리가 강조되고 귀에 피로를 유발할 수 있습니다."
     }
   ],
   "accessories": {
     "content": "<p class=\"center\">해당 그래프 데이터베이스는 HarutoHiroki가 관리하고 있습니다. \"IEC60318-4\"를 준수하는 이어 시뮬레이터를 활용한 주파수 응답 측정치들이 등재되어 있습니다. 본 웹 소프트웨어는 오픈소스 프로젝트 <a href=\"https://github.com/mlochbaum/CrinGraph\">CrinGraph</a>의 수정된 버전에 기반하고 있습니다. 음역대와 관련된 설명은 <a href=\"https://www.teachmeaudio.com/mixing/techniques/audio-spectrum\">Audio Spectrum</a>에서 발췌하였습니다.</p>"
+  },
+  "targets": {
+    "Reference": "레퍼런스",
+    "Neutral": "뉴트럴",
+    "Reviewer": "리뷰어",
+    "Preference": "선호도",
+    "TARGETS": "타겟"
   },
   "main": {
     "pin": "고정",
@@ -113,7 +113,7 @@
     "autoEqGainRange": "게인 범위",
     "autoEqQRange": "Q 범위",
     "autoEQ": "AutoEQ",
-    "readme": "Readme",
+    "readme": "도움말",
     "eqDemo": "EQ 미리 듣기",
     "pinkNoise": "핑크 노이즈",
     "scarletFire": "Scarlet Fire",
@@ -129,5 +129,25 @@
     "exportParametricEQ": "파라메트릭 EQ 내보내기",
     "exportGraphicEQ": "그래픽 EQ 내보내기 (웨이블릿)",
     "autoEQRunning": "AutoEQ가 실행 중입니다. 5~20초 또는 더 오래 걸릴 수도 있습니다."
+  },
+  "alertMessages": {
+    "headphoneNotFound": "측정치 데이터를 찾을 수 없습니다!",
+    "boundsNotFound": "경계 데이터를 찾을 수 없습니다!",
+    "customTiltNotSupported": "해당 타겟은 틸트 기능이 지원되지 않습니다",
+    "parseFRFailed": "주파수 응답 데이터를 불러올 수 없습니다: 잘못된 형식입니다.",
+    "targetAlreadyExists": "이미 사이트에 존재하는 타겟입니다. 업로드 대신 목록에서 타겟을 선택하세요.",
+    "noFiltersSelectedForSave": "저장하기 전에 모델을 선택하고 최소한 하나의 필터를 추가하세요.",
+    "parseFiltersFailed": "필터 데이터를 불러올 수 없습니다: 필터를 찾을 수 없습니다.",
+    "noFiltersSelectedForExport": "내보내기 전에 최소한 하나의 필터를 추가하세요.",
+    "equalizerReadMe": [
+      "1. 모델 A를 B로 AutoEQ하려면 A와 B를 표시하고 타겟을 제거하세요.",
+      "2. AutoEQ를 적용하기 전, EQ 밴드를 더하거나 없애는 것으로 더 나은 결과를 얻을 수도 있습니다.",
+      "3. 20kHz에 가까운 PK 필터를 사용하는 것은 상당히 까다롭습니다. DSP 소프트웨어의 작동 방식을 모르는 경우 15kHz를 초과하는 주파수는 건드리지 마세요.",
+      "4. 고음역대를 EQ로 다듬기 위해서는 직접 본인의 귀로 소리를 듣고, 고음 피크를 찾는 작업이 필요합니다. EQ가 처음이라면, 고음역대는 건드리지 않는 것이 좋습니다.",
+      "5. EQ 미리 듣기 메뉴의 '톤 제너레이터'를 사용하면 직접 본인의 귀에서 감지되는 피크와 딥을 찾을 수 있습니다. 일부 플랫폼에서는 해당 기능이 작동하지 않을 수 있음을 참고하세요."
+    ],
+    "autoEQFilterAlert": "모델과 타겟을 선택하세요. 타겟이 없는 상태에서 여러 모델이 표시된 경우, 두 번째 모델이 타겟으로 사용됩니다.",
+    "webAudioNotSupported": "웹 오디오 API가 비활성화되었습니다. EQ 테스트 기능을 사용하려면 활성화하세요.",
+    "noAudioUploaded": "먼저 음원을 업로드하세요."
   }
 }
