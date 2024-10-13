@@ -58,6 +58,7 @@ const  preference_bounds_name = "Preference Bounds RAW",  // Preference bounds n
        tiltableTargets = ["KEMAR DF"],                 // Targets that are allowed to be tilted
        compTargets = ["KEMAR DF"],                     // Targets that are allowed to be used for compensation
        allowCreatorSupport = true;                     // Allow the creator to have a button top right to support them
+       enableNonConfidenceIntervalTutorial = true;     // If true, the Non-Confidence Interval tutorial will be displayed.
        allowLanguageSelector = true;                   // Add Language Selector on the top right of the page
        availableLanguages = ["en", "ko"];              // List of available language codes. When you are adding a new language, make sure to use ISO 639-1 Language Codes for auto-detection.
        defaultLanguage = "en";                         // Determine default (fallback) language. It should be included in the availableLanguages list.
