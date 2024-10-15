@@ -1,5 +1,12 @@
 # Feat/l10n (Localization)
 
+## Important Notice
+
+This feature has been included to [Original PublicGraphTool project by HarutoHiroki](https://github.com/HarutoHiroki/PublicGraphTool/pull/2). \
+You don't need to manually pull or fetch to apply this feature.
+
+---
+
 This branch adds a new localization feature to the graphtool.
 
 - Add new Language Selector to the top right corner.
