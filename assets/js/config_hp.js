@@ -58,6 +58,7 @@ const  preference_bounds_name = "Preference Bounds RAW", // Preference bounds na
        tiltableTargets = ["KEMAR DF"],                 // Targets that are allowed to be tilted
        compTargets = ["KEMAR DF"],                     // Targets that are allowed to be used for compensation
        allowCreatorSupport = true;                     // Allow the creator to have a button top right to support them
+       enableNonConfidenceIntervalTutorial = false;     // If true, the Non-Confidence Interval tutorial will be displayed.
        allowLanguageSelector = true;                   // Add Language Selector on the top right of the page
        availableLanguages = ["en", "ko"];              // List of available language codes. When you are adding a new language, make sure to use ISO 639-1 Language Codes for auto-detection.
        defaultLanguage = "en";                         // Determine default (fallback) language. It should be included in the availableLanguages list.
@@ -143,10 +144,10 @@ const
     // Short text, center-aligned, useful for a little side info, credits, links to measurement setup, etc. 
     simpleAbout = `
         <p class="center">This graph database is maintained by HarutoHiroki with frequency responses generated via an "IEC60318-4"-compliant ear simulator. This web software is based on a heavily modified version of the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project, with <a href="https://www.teachmeaudio.com/mixing/techniques/audio-spectrum">Audio Spectrum</a>'s definition source.</p>
-    `,
+    `;
     // Which of the above variables to actually insert into the page
     // If you are using custom accessories, you may need to change loadTranslations() in translate.js to utilize custom accessories
-    whichAccessoriesToUse = simpleAbout;
+let whichAccessoriesToUse = simpleAbout;
 
 
 

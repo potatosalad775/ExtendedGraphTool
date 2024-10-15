@@ -197,7 +197,7 @@ function updateTranslations() {
     .text(t.uploadWarning);
 
   doc
-    .selectAll(".extra-eq h4")
+    .selectAll(".extra-eq h4:not(#preamp-disp)")
     .data([
       t.parametricEqualizer,
       t.autoEQ,
@@ -209,7 +209,7 @@ function updateTranslations() {
   doc
     .select(".select-eq-phone option")
     .text(t.chooseEQModel);
-  doc.select("#preamp-disp").text(`${t.preamp}: 0.0 dB`);
+  //doc.select("#preamp-disp").text(`${t.preamp}: 0.0 dB`);
 
   doc
     .selectAll(".filters-header span")

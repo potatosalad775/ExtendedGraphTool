@@ -181,7 +181,7 @@ doc.html(`
                     <option value="" selected>Choose EQ model</option>
                 </select>
               </div>
-              <h3 id="preamp-disp" style="margin-top:12px">Pre-amp: 0.0 dB</h3>
+              <h4 id="preamp-disp" style="margin-top:12px">Pre-amp: 0.0 dB</h4>
               <div class="filters-header">
                 <span>Type</span>
                 <span>Frequency</span>
