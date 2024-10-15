@@ -12,8 +12,15 @@ You can checkout to each branch to see or implement those features.
 
 The 'custom' branch includes all additional features mentioned below.
 
-- Multi-language Support [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/l10n)
-- Non-Confidence Interval Tutorial for IEC 60318-4 (711) [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/Non-Confidence-Interval-Tutorial)
+### Multi-language Support - [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/l10n)
+
+Adds Multi-Language Support to GraphTool.
+
+*This feature has now been implemented to [the OG PublicGraphTool.](https://github.com/HarutoHiroki/PublicGraphTool/pull/2)*
+
+### Non-Confidence Interval Tutorial - [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/Non-Confidence-Interval-Tutorial)
+
+Adds a Tutorial on the Non-Confidence Interval of IEC 60318-4 compliant ear simulators. (8kHz~)
 
 ---
 
