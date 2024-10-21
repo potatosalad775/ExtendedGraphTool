@@ -1,9 +1,36 @@
-# Demo Page
-https://graphtool-demo.harutohiroki.com/
+# ExtendedGraphTool
 
-# Changes
+This repo is a fork of [PublicGraphTool](https://github.com/HarutoHiroki/PublicGraphTool) with additional features and modifications.
+
+Are you looking for a 'squig.link compatible' PublicGraphTool? Head over to ['squiglink' branch](https://github.com/potatosalad775/ExtendedGraphTool/tree/squiglink).
+
+## Demo Page
+N/A yet, but you can see my squig.link [here](https://silicagel.squig.link) atm.
+
+## Additional Features
+
+Each additional features are implemented in a separate branch. \
+You can checkout to each branch to see or implement those features.
+
+The 'custom' branch includes all additional features mentioned below.
+
+### Multi-language Support - [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/l10n)
+
+Adds Multi-Language Support to GraphTool.
+
+*This feature has now been implemented to [the OG PublicGraphTool.](https://github.com/HarutoHiroki/PublicGraphTool/pull/2)*
+
+### Non-Confidence Interval Tutorial - [(branch)](https://github.com/potatosalad775/ExtendedGraphTool/tree/feat/Non-Confidence-Interval-Tutorial)
+
+Adds a Tutorial on the Non-Confidence Interval of IEC 60318-4 compliant ear simulators. (8kHz~)
+
+---
+
+# PublicGraphTool by mlochbaum (HarutoHiroki)
+
+## Changes
 - Added Equalizer (cred to Rohsa)
-- Added Uploads
+- Added Upload
 - Added Targets
 - Added Website link on graph (cred to MRS)
 - Re-themed graph window
@@ -37,7 +64,7 @@ https://graphtool-demo.harutohiroki.com/
 - Added Translations (Thanks to potatosalad775)
 - Brought the public version up to date
 
-# TODO
+## TODO
 - Implement a way to measure the SPL of an IEM and decide whether to upload it or not, skipping REW
   - ability to select which mic/output to use
   - ability to select calibration files
@@ -45,12 +72,12 @@ https://graphtool-demo.harutohiroki.com/
 - Trace Arithmetic
 - Realtime Analysis
 - 
-# For Contributors
+## For Contributors
 - The code is a mess, I know. I'm working on it. I'm sorry.
 - If you want to contribute and help translate the tool, all the source English text is in the `en.json` file. Just copy the file and rename it to your language code (make sure to use ISO 639-1 Language Codes for auto-detection e.g. `fr.json` for French) and translate the text. I'll take care of the rest.
 - The translation feature will always prioritize what's in the language files. If a text is missing in the translation file, it will default to the text in the `config.json` file.
 - Please don't make any text/value `null`. If you want to not have a text/value, just leave it empty (e.g. `""` or `[]`).
 - For targets, each target `"type"` is a key in the language files. The value of the key is the name of the category of targets.
 
-# P.S.
+## P.S.
 - If you do implement code in here, do leave credits to the original author (me) and the contributors (Rohsa, MRS, potatosalad775)
