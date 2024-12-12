@@ -2,7 +2,7 @@
 
 This version of PublicGraphTool is modified for Squig.link compability.
 
-Simply copy every file from here, and replace your squig.link database.
+Simply [download every file from here](https://github.com/potatosalad775/ExtendedGraphTool/archive/refs/heads/squiglink.zip), and replace your squig.link database with these.
 
 ## Changes from Original PublicGraphTool
 
