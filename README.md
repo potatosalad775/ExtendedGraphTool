@@ -1,12 +1,14 @@
 # PublicGraphTool for Squig.link
 
-This version of PublicGraphTool is modified for Squig.link compability.
+This version of PublicGraphTool has been modified to be compatible with Squig.link.
 
-Simply [download every file from here](https://github.com/potatosalad775/ExtendedGraphTool/archive/refs/heads/squiglink.zip), and replace your squig.link database with these.
+Simply [download all files from here](https://github.com/potatosalad775/ExtendedGraphTool/archive/refs/heads/squiglink.zip), and replace your squig.link database with this one.
+
+Be sure to make a backup before proceeding.
 
 ## Changes from Original PublicGraphTool
 
-- Reverted measurement data folder structure back to original
+- Reverted measurement data folder structure back to original CrinGraph
 - Applied Squig.link's graphAnalytics script
 - Added Squigsites script for additional squig.link features
 
