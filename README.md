@@ -1,7 +1,23 @@
-# Demo Page
+# PublicGraphTool for Squig.link
+
+This version of PublicGraphTool is modified for Squig.link compability.
+
+Simply copy every file from here, and replace your squig.link database.
+
+## Changes from Original PublicGraphTool
+
+- Reverted measurement data folder structure back to original
+- Applied Squig.link's graphAnalytics script
+- Added Squigsites script for additional squig.link features
+
+
+---
+
+
+# PublicGraphTool Demo Page
 https://graphtool-demo.harutohiroki.com/
 
-# Changes
+## Changes
 - Added Equalizer (cred to Rohsa)
 - Added Uploads
 - Added Targets
@@ -36,7 +52,7 @@ https://graphtool-demo.harutohiroki.com/
 - Added a Graph Customisation menu
 
 
-# TODO
+## TODO
 - Implement a way to measure the SPL of an IEM and decide whether to upload it or not, skipping REW
   - ability to select which mic/output to use
   - ability to select calibration files
@@ -44,5 +60,5 @@ https://graphtool-demo.harutohiroki.com/
 - Trace Arithmetic
 - Realtime Analysis
 
-# P.S.
+## P.S.
 - If you do implement code in here, do leave credits to the original author (me) and the contributors (Rohsa, MRS)

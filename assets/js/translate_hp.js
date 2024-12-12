@@ -23,12 +23,12 @@ async function loadTranslations(lang) {
   try {
     // Load English strings if not already loaded
     if (Object.keys(enStrings).length === 0) {
-      const enResponse = await fetch(`assets/lang/en_hp.json`);
+      const enResponse = await fetch(`../assets/lang/en_hp.json`);
       enStrings = await enResponse.json();
     }
 
     // Load translations for the specified language
-    const response = await fetch(`assets/lang/${lang}_hp.json`);
+    const response = await fetch(`../assets/lang/${lang}_hp.json`);
     translations = await response.json();
 
     // Set up header, tutorial, and accessories content if the language is English

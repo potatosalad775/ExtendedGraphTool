@@ -1,6 +1,6 @@
 // Configuration options
 const init_phones = ["IEF Neutral Target"],                             // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
-      DIR = "data_hp/",                                // Directory where graph files are stored
+      DIR = "data/",                                // Directory where graph files are stored
       default_channels = ["L","R"],                 // Which channels to display. Avoid javascript errors if loading just one channel per phone
       default_normalization = "dB",                 // Sets default graph normalization mode. Accepts "dB" or "Hz"
       default_norm_db = 60,                         // Sets default dB normalization point
@@ -14,7 +14,7 @@ const init_phones = ["IEF Neutral Target"],                             // Optio
       site_url = '/',                               // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "HarutoHiroki",              // Optional. Watermark appears behind graphs
-      watermark_image_url = "assets/images/haruto.svg",   // Optional. If image file is in same directory as config, can be just the filename
+      watermark_image_url = "../assets/images/haruto.svg",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "HarutoHiroki",                  // Optional. Appended to the page title if share URLs are enabled
       page_description = "View and compare frequency response graphs for headphones.",
       accessories = true,                           // If true, displays specified HTML at the bottom of the page. Configure further below
@@ -27,7 +27,7 @@ const init_phones = ["IEF Neutral Target"],                             // Optio
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       labelsPosition = "bottom-left",               // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
       stickyLabels = true,                          // "Sticky" labels 
-      analyticsEnabled = false,                     // Enables Google Analytics 4 measurement of site usage
+      analyticsEnabled = true,                     // Enables Google Analytics 4 measurement of site usage
       extraEnabled = true,                          // Enable extra features
       extraUploadEnabled = true,                    // Enable upload function
       extraEQEnabled = true,                        // Enable parametic eq function
@@ -44,10 +44,10 @@ const targets = [
 
 // Haruto's Addons
 const  preference_bounds_name = "Preference Bounds RAW", // Preference bounds name
-       preference_bounds_dir = "assets/pref_bounds/",    // Preference bounds directory
+       preference_bounds_dir = "../assets/pref_bounds/",    // Preference bounds directory
        preference_bounds_startup = false,              // If true, preference bounds are displayed on startup
        allowSquigDownload = false,                     // If true, allows download of measurement data
-       PHONE_BOOK = "phone_book_hp.json",              // Path to phone book JSON file
+       PHONE_BOOK = "data/phone_book.json",              // Path to phone book JSON file
        default_y_scale = "40db",                       // Default Y scale; values: ["20db", "30db", "40db", "50db", "crin"]
        default_DF_name = "KEMAR DF",                   // Default RAW DF name
        dfBaseline = true,                              // If true, DF is used as baseline when custom df tilt is on
@@ -84,12 +84,12 @@ function watermark(svg) {
     
     if ( watermark_image_url ) {
         wm.append("image")
-            .attrs({id:'logo', x:-64, y:-64, width:128, height:128, "xlink:href":watermark_image_url, "class":"graph_logo"});
+            .attrs({id:'logo', x:-64, y:-64, width:128, height:128, "xlink:href":watermark_image_url, "filter":"var(--svg-filter)", "class":"graph_logo"});
     }
     
     if ( watermark_text ) {
         wm.append("text")
-            .attrs({id:'wtext', x:0, y:80, "font-size":28, "text-anchor":"middle", "class":"graph-name"})
+            .attrs({id:'wtext', x:0, y:80, "font-size":28, "text-anchor":"middle", "fill":"currentColor", "class":"graph-name"})
             .text(watermark_text);
     }
 
@@ -97,7 +97,7 @@ function watermark(svg) {
     svg.append("g")
         .attr("opacity",0.2)
         .append("text")
-        .attrs({x:765, y:314, "font-size":10, "text-anchor":"end", "class":"site_name"})
+        .attrs({x:765, y:314, "font-size":10, "text-anchor":"end", "fill":"currentColor", "class":"site_name"})
         .text("graphtool.harutohiroki.com");
 }
 
@@ -127,10 +127,10 @@ function setLayout() {
     }
 
     if ( !alt_layout ) {
-        applyStylesheet("assets/css/style.css");
+        applyStylesheet("../assets/css/style.css");
     } else {
-        applyStylesheet("assets/css/style-alt.css");
-        applyStylesheet("assets/css/style-alt-theme.css");
+        applyStylesheet("../assets/css/style-alt.css");
+        applyStylesheet("../assets/css/style-alt-theme.css");
     }
 }
 setLayout();
@@ -223,7 +223,7 @@ function setupGraphAnalytics() {
     if ( analyticsEnabled ) {
         const pageHead = document.querySelector("head"),
               graphAnalytics = document.createElement("script"),
-              graphAnalyticsSrc = "graphAnalytics.js";
+              graphAnalyticsSrc = "../assets/js/graphAnalytics.js";
         
         graphAnalytics.setAttribute("src", graphAnalyticsSrc);
         pageHead.append(graphAnalytics);
@@ -235,7 +235,7 @@ setupGraphAnalytics();
 
 // If alt_header is enabled, these are the items added to the header
 let headerLogoText = "HarutoHiroki",
-    headerLogoImgUrl = "assets/images/haruto.svg",
+    headerLogoImgUrl = "../assets/images/haruto.svg",
     headerLinks = [
     {
         name: "Home",

@@ -27,7 +27,7 @@ const init_phones = ["Haruto 2024 Target", "AudioSense DT200"],// Optional. Whic
       targetColorCustom = false,                    // If false, targets appear as a random gray value. Can replace with a fixed color value to make all targets the specified color, e.g. "black"
       labelsPosition = "bottom-left",               // Up to four labels will be grouped in a specified corner. Accepts "top-left," bottom-left," "bottom-right," and "default"
       stickyLabels = true,                          // "Sticky" labels 
-      analyticsEnabled = false,                     // Enables Google Analytics 4 measurement of site usage
+      analyticsEnabled = true,                     // Enables Google Analytics 4 measurement of site usage
       extraEnabled = true,                          // Enable extra features
       extraUploadEnabled = true,                    // Enable upload function
       extraEQEnabled = true,                        // Enable parametic eq function
@@ -47,7 +47,7 @@ const  preference_bounds_name = "Preference Bounds RAW",  // Preference bounds n
        preference_bounds_dir = "assets/pref_bounds/",  // Preference bounds directory
        preference_bounds_startup = false,              // If true, preference bounds are displayed on startup
        allowSquigDownload = false,                     // If true, allows download of measurement data
-       PHONE_BOOK = "phone_book.json",                 // Path to phone book JSON file
+       PHONE_BOOK = "data/phone_book.json",                 // Path to phone book JSON file
        default_y_scale = "40db",                       // Default Y scale; values: ["20db", "30db", "40db", "50db", "crin"]
        default_DF_name = "KEMAR DF",                   // Default RAW DF name
        dfBaseline = true,                              // If true, DF is used as baseline when custom df tilt is on
@@ -224,7 +224,7 @@ function setupGraphAnalytics() {
     if ( analyticsEnabled ) {
         const pageHead = document.querySelector("head"),
               graphAnalytics = document.createElement("script"),
-              graphAnalyticsSrc = "graphAnalytics.js";
+              graphAnalyticsSrc = "/assets/js/graphAnalytics.js";
         
         graphAnalytics.setAttribute("src", graphAnalyticsSrc);
         pageHead.append(graphAnalytics);
