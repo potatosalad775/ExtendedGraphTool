@@ -1,14 +1,18 @@
 # PublicGraphTool for Squig.link
 
-This version of PublicGraphTool has been modified to be compatible with Squig.link.
-
+This version of PublicGraphTool has been modified to be compatible with Squig.link. \
 Simply [download all files from here](https://github.com/potatosalad775/ExtendedGraphTool/archive/refs/heads/squiglink.zip), and replace your squig.link database with this one.
 
+It is **highly recommended** to manually move the data files and edit new config.js to your liking. (**Do not overwrite** with old files) \
 Be sure to make a backup before proceeding.
+
+If you are having trouble migrating your database, please contact potatosalad775@discord for assistance.
 
 ## Changes from Original PublicGraphTool
 
 - Reverted measurement data folder structure back to original CrinGraph
+  - 'data_hp' folder and 'phone_book_hp.json' file for headphones measurement data are now located in a separate headphones folder.
+  - to accomodate with this, config_hp.js and headphones.html has been modified.
 - Applied Squig.link's graphAnalytics script
 - Added Squigsites script for additional squig.link features
 
