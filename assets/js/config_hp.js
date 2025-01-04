@@ -68,6 +68,7 @@ const  preference_bounds_name = "Bounds",              // Preference bounds name
        translateAccessories = true;                    // If true, translated accessories from language files will be used over the one from config.js
        translateTargetTypes = true;                    // If true, translated target types from language files will be used over the one from config.js
        translateAlertMessages = true;                  // If true, translated alert messages from language files will be used.
+       allowMultipleTargets = true;                    // If true, multiple targets can be selected at once. (You still cannot add multiple tilted targets.)
 
 const harmanFilters = [
     { name: "Harman 2013 OE", tilt: 0, bass_shelf: 4.8, ear: 0, treble: -4.4 },
