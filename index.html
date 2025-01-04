@@ -32,6 +32,7 @@
         <style type="text/css">body { opacity: 0.0; transition: opacity 0.1s ease-in; }</style>
         <link rel="stylesheet" href="assets/css/extra.css">
         <link rel="stylesheet" href="assets/css/reinvented-color-wheel.min.css">
+        <link rel="preload" href="../assets/lang/en.json" as="fetch" crossOrigin="anonymous">
         <base target="_parent">
     </head>
     
@@ -49,10 +50,10 @@
         <script src="assets/js/saveSvgAsPng.js"></script>
         <script src="assets/js/graphtool.js"></script>
         <script src="https://squig.link/squigsites.js"></script>
-        <audio id="pinkNoiseAudio" preload="auto" loop>
+        <audio id="pinkNoiseAudio" preload="none" loop>
             <source src="assets/audio/pinknoise.wav" type="audio/wav">
         </audio>
-        <audio id="scarletFIRE" preload="auto" loop>
+        <audio id="scarletFIRE" preload="none" loop>
             <source src="assets/audio/Scarlet_Fire-Otis_McDonald.mp3" type="audio/mp3">
         </audio>
     </body>
