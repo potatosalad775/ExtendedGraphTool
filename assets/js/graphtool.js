@@ -2053,6 +2053,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
     if (extraEnabled && extraEQEnabled) {
         updateEQPhoneSelect();
     }
+    if (!p.isTarget && alt_augment ) { augmentList(p); }
 }
 
 function removeCopies(p) {
