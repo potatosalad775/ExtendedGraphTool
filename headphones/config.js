@@ -11,6 +11,7 @@ const init_phones = ["IEF Neutral Target"],                             // Optio
       alt_animated = true,                          // Determines if new graphs are drawn with a 1-second animation, or appear instantly
       alt_header = true,                            // Display a configurable header at the top of the alt layout
       alt_tutorial = true,                          // Display a configurable frequency response guide below the graph
+      alt_augment = true,                           // Display augment card in phone list, e.g. review sore, shop link
       site_url = '/',                               // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
       watermark_text = "HarutoHiroki",              // Optional. Watermark appears behind graphs
