@@ -67,6 +67,7 @@ const  preference_bounds_name = "Preference Bounds RAW", // Preference bounds na
        translateAccessories = true;                    // If true, translated accessories from language files will be used over the one from config.js
        translateTargetTypes = true;                    // If true, translated target types from language files will be used over the one from config.js
        translateAlertMessages = true;                  // If true, translated alert messages from language files will be used.
+       allowMultipleTargets = true;                    // If true, multiple targets can be selected at once. (You still cannot add multiple tilted targets.)
 
 
 

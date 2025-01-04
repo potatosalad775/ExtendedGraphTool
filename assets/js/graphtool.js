@@ -1973,6 +1973,9 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
             updatePhoneTable();
         }
     }
+    if (p.isTarget && allowMultipleTargets) {
+        exclusive = false;
+    }
     if (addPhoneSet) {
         exclusive = false;
         if (!addPhoneLock) {
@@ -2031,7 +2034,7 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
         prepPrefBounds();
         updateDF(boost, tilt, ear, treble);
     } else if (p.isTarget && !tiltableTargets.includes(p.dispName) && p.phone != "Custom Tilt") {
-        removePhone(df);
+        if(!allowMultipleTargets) removePhone(df);
         customTiltName = p.dispName;
         if (p.dispName == "∆") customTiltName = "Delta (∆)";
         setBaseline(baseline0,1);
