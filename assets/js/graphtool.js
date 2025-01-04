@@ -2130,6 +2130,12 @@ function asPhoneObj(b, p, isInit, inits) {
     }
     r.dispName = r.dispName || r.phone;
     r.fullName = r.dispBrand + " " + r.phone;
+    if (alt_augment) {
+        r.reviewScore = p.reviewScore;
+        r.reviewLink = p.reviewLink;
+        r.shopLink = p.shopLink;
+        r.price = p.price;
+    }
     return r;
 }
 
@@ -2999,6 +3005,7 @@ function addExtra() {
         document.querySelector("div.select > div.selector-panel").style["display"] = "none";
         document.querySelector("div.select > div.extra-panel").style["display"] = "flex";
         document.querySelector("div.select").setAttribute("data-selected", "extra");
+        if (analyticsEnabled) { pushEventTag("clicked_equalizerTab", targetWindow); }
     };
     window.hideExtraPanel = (selectedList) => {
         document.querySelector("div.select > div.selector-panel").style["display"] = "flex";

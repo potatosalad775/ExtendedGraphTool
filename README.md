@@ -8,14 +8,45 @@ Be sure to make a backup before proceeding.
 
 If you are having trouble migrating your database, please contact potatosalad775@discord for assistance.
 
+## Migration Tutorial
+
+```
+1. Download this PublicGraphTool and your own existing squig.link database into separate folders on your computer.
+
+2. Move the files that don't need any changes
+
+- Measurement data files (.txt) -> /data/zero2.txt
+- phone_book.json -> /data/phone_book.json
+- Image files -> /assets/images/sample.img
+
+3. Edit several files that need to be modified
+
+- config.js
+  - Carefully migrate your previous changes to the new config.js.
+  - Be careful with the directories. Take note of what's already documented in there and modify it accordingly.
+
+- index.html
+  - Everything inside the <head> tag is safe to edit.
+  - Be careful not to accidentally remove or edit scripts inside the <body> tag.
+
+4. (Optional) Personalize addon features
+
+- Localization
+  - You can add support for foreign languages. Please see `/assets/lang/en.json` and `/assets/lang/ko.json` for more information.
+
+5. Move new GraphTool to live server
+
+- Access your own database with an FTP client, create a new directory (e.g. '_backup') and move whole existing files into it.
+- Move your new GraphTool files to the database server and you should be ready to go.
+```
+
 ## Changes from Original PublicGraphTool
 
-- Reverted measurement data folder structure back to original CrinGraph
-  - 'data_hp' folder and 'phone_book_hp.json' file for headphones measurement data are now located in a separate headphones folder.
-  - to accomodate with this, config_hp.js and headphones.html has been modified.
+- Modified data folder structure
+  - headphones measurement data are now located in a separate headphones folder.
 - Applied Squig.link's graphAnalytics script
-- Added Squigsites script for additional squig.link features
-
+- Added listAugment.js
+- Added squig.link features
 
 ---
 
