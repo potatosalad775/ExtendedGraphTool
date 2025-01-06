@@ -11,12 +11,12 @@
         "url": "https://docs.google.com/spreadsheets/d/1DZTac1BxCLdmS2J4DDQyvKSVUZGnNhz2r86qMGcs_Jo/edit?pli=1#gid=330037169"
       },
       {
-        "name": "디스코드",
-        "url": "https://discord.harutohiroki.com"
-      },
-      {
         "name": "기부",
         "url": "https://ko-fi.com/harutohiroki"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/HarutoHiroki"
       }
     ]
   },
