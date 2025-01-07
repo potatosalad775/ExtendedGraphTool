@@ -2259,7 +2259,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             });
         d3.select(".manage").insert("div",".customDF")
             .attr("class", "targets collapseTools");
-        let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
+        let l = (text,c) => s => s.append("div").attrs({"class":"targetLabel", "targetLabelSuffix":" Targets:"}).append("span").text(text);
         let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
             .selectAll().data(targets).join("div").call(l(t=>t.type))
             .style("flex-grow",t=>t.files.length).attr("class","targetClass")
