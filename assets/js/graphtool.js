@@ -615,7 +615,8 @@ function checkUserDefaultScale() {
 
 // Label drawing and screenshot
 let getFullName = p => p.dispBrand+" "+p.dispName,
-    getChannelName = p => n => getFullName(p) + " ("+n+")";
+    getCompStatus = p => (p.comp && p.comp !== "<no comp>") ? `, ${p.comp} Compensated` : "",
+    getChannelName = p => n => getFullName(p) + " ("+n+getCompStatus(p)+")";
 
 let labelButton = doc.select("#label"),
     labelsShown = false;
@@ -651,7 +652,7 @@ function drawLabels() {
 
     gr.selectAll(".lineLabel").remove();
     let g = gr.selectAll(".lineLabel").data(bcurves)
-        .join("g").attr("class","lineLabel").attr("opacity", 0);
+        .join("g").attrs({"class":"lineLabel", "data-filename":c=>c.p.fileName}).attr("opacity", 0);
     let t = g.append("text")
         .attrs({x:0, y:0, fill:c=>getTooltipColor(c)})
         .text(c=>c.id);
@@ -1308,7 +1309,7 @@ let colorBar = p=>'url(\'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/s
 function updatePhoneTable() {
     let c = table.selectAll("tr").data(activePhones.filter(p => !p.isPrefBounds), p=>p.fileName);
     c.exit().remove();
-    let f = c.enter().append("tr"),
+    let f = c.enter().append("tr").attr("data-filename", p=>p.fileName),
         td = () => f.append("td");
     f   .call(setHover, h => p => hl(p,h))
         .style("color", p => getDivColor(p.id,true,p.hexColor));
@@ -1473,6 +1474,11 @@ function handleComp(p, opt) {
         p.comp = opt;
         updateChannels(p, ch);
     }
+}
+
+function validateComp(input) {
+    // make sure specified comp target is included within list
+    return compTargets && compTargets.includes(input);
 }
 
 // Pref Bounds
@@ -2056,6 +2062,17 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
     d3.selectAll("#phones .phone-item,.target")
         .filter(p=>p.id!==undefined)
         .call(setPhoneTr);
+    // Compensate the measurement with specified target at config.js
+    if(!p.isTarget && compensateMeasurementByDefault && validateComp(default_comp_target)) {
+        // Apply compensation
+        handleComp(p, default_comp_target); 
+        // Change dropdown menu value
+        document.querySelectorAll(".curves > tr").forEach((tr) => {
+            if(tr.getAttribute("data-filename") === p.fileName) {
+                tr.querySelector(".comp > select").value = default_comp_target;
+            }
+        });
+    }
     //Displays variant pop-up when phone displayed
     if (!suppressVariant && p.fileNames && !p.copyOf && window.innerWidth > 1000) {
         table.selectAll("tr").filter(q=>q===p).select(".variants").node().focus();
