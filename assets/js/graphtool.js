@@ -1265,7 +1265,7 @@ function addPhonesToUrl() {
         url += "?share=" + encodeURI(names.join().replace(/ /g,"_"));
         title = namesCombined + " - " + title;
     }
-    if (names.includes("Custom Tilt")) {
+    if (tiltableTargets.some(target => names.includes(target + " Target"))) {
         url += "&bass="+boost+"&tilt="+tilt+"&treble="+treble+"&ear="+ear;
     }
     if (names.length === 1) {
@@ -2050,7 +2050,6 @@ function showPhone(p, exclusive, suppressVariant, trigger) {
     } else if (p.isTarget && !tiltableTargets.includes(p.dispName) && p.phone != "Custom Tilt") {
         if(!allowMultipleTargets) removePhone(df);
         customTiltName = p.dispName;
-        if (p.dispName == "∆") customTiltName = "Delta (∆)";
         setBaseline(baseline0,1);
     }
     updatePaths(trigger);
@@ -2271,8 +2270,8 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
             });
         d3.select(".manage").insert("div",".customDF")
             .attr("class", "targets collapseTools");
-        let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
-        let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
+            let l = (text,c) => s => s.append("div").attr("class","targetLabel").append("span").text(text);
+            let ts = b.phoneObjs = doc.select(".targets").call(l("Targets"))
             .selectAll().data(targets).join("div").call(l(t=>t.type))
             .style("flex-grow",t=>t.files.length).attr("class","targetClass")
             .selectAll().data(t=>t.files.map(ph))
@@ -2286,17 +2285,10 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     }
 
     df = window.brandTarget.phoneObjs.find(p => p.dispName === default_DF_name);
-    if (isInit("Custom Tilt") || init_phones.includes(default_DF_name + " Target")) {
+    if (init_phones.includes(default_DF_name + " Target")) {
         showPhone(df);
         updateDispVals();
     }
-    loadFiles(df, function (ch) {
-        df.rawChannels = ch;
-        smoothPhone(df);
-        normalizePhone(df);
-        df.offset=df.offset||0;
-        dfBase = getBaseline(df);
-    });
 
     inits.map(p => p.copyOf ? showVariant(p.copyOf, p, initMode)
                             : showPhone(p,0,1, initMode));
@@ -2485,7 +2477,6 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         } else {
             boundsBtn.classed("selected", true);
             // set baseline
-            showPhone(df, true);
             setBaseline(dfBase);
             
             // show preference bounds
@@ -3828,17 +3819,19 @@ function addHeader() {
     linksList.className = "header-links";
     altHeaderElem.append(linksList);
     
-    headerLinks.forEach(function(link) {
-        let linkContainerElem = document.createElement("li"),
-            linkElem = document.createElement("a");
-        
-        linkElem.setAttribute("href", link.url);
-        linkElem.setAttribute("target", "_blank");
-        linkElem.setAttribute('style', "color: #ffffff");
-        linkElem.textContent = link.name;
-        linkContainerElem.append(linkElem);
-        linksList.append(linkContainerElem);
-    })
+    if(headerLinks) {
+        headerLinks.forEach(function(link) {
+            let linkContainerElem = document.createElement("li"),
+                linkElem = document.createElement("a");
+            
+            linkElem.setAttribute("href", link.url);
+            linkElem.setAttribute("target", "_blank");
+            linkElem.setAttribute('style', "color: #ffffff");
+            linkElem.textContent = link.name;
+            linkContainerElem.append(linkElem);
+            linksList.append(linkContainerElem);
+        }
+    )}
 
     if (allowCreatorSupport) {
         // custom Ko-fi button

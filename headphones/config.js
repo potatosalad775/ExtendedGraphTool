@@ -44,8 +44,8 @@ const targets = [
 ];
 
 // Haruto's Addons
-const  preference_bounds_name = "Bounds", // Preference bounds name
-       preference_bounds_dir = "../assets/pref_bounds/",    // Preference bounds directory
+const  preference_bounds_name = "Bounds",              // Preference bounds name
+       preference_bounds_dir = "../assets/pref_bounds/",  // Preference bounds directory
        preference_bounds_startup = false,              // If true, preference bounds are displayed on startup
        allowSquigDownload = false,                     // If true, allows download of measurement data
        PHONE_BOOK = "data/phone_book.json",              // Path to phone book JSON file
@@ -58,16 +58,16 @@ const  preference_bounds_name = "Bounds", // Preference bounds name
        default_treble = 0,                             // Default Custom DF treble gain value
        tiltableTargets = ["KEMAR DF"],                 // Targets that are allowed to be tilted
        compTargets = ["KEMAR DF"],                     // Targets that are allowed to be used for compensation
-       allowCreatorSupport = false;                     // Allow the creator to have a button top right to support them
-       allowLanguageSelector = false;                   // Add Language Selector on the top right of the page
+       allowCreatorSupport = true;                     // Allow the creator to have a button top right to support them
+       allowLanguageSelector = false;                  // Add Language Selector on the top right of the page. If it's false, l10n feature will be disabled.
        availableLanguages = ["en", "ko"];              // List of available language codes. When you are adding a new language, make sure to use ISO 639-1 Language Codes for auto-detection.
        defaultLanguage = "en";                         // Determine default (fallback) language. It should be included in the availableLanguages list.
-       useBrowserLangAsDefault = false;                 // If true, the browser's language will be used as the default language. If false, the defaultLanguage setting will be used as the default.
-       translateHeader = false;                         // If true, translated header link from language files will be used over the one from config.js
-       translateTutorial = false;                       // If true, translated tutorial from language files will be used over the one from config.js
-       translateAccessories = false;                    // If true, translated accessories from language files will be used over the one from config.js
-       translateTargetTypes = false;                    // If true, translated target types from language files will be used over the one from config.js
-       translateAlertMessages = false;                  // If true, translated alert messages from language files will be used.
+       useBrowserLangAsDefault = false;                // If true, the browser's language will be used as the default language. If false, the defaultLanguage setting will be used as the default.
+       translateHeader = false;                        // If true, translated header link from language files will be used over the one from config.js
+       translateTutorial = false;                      // If true, translated tutorial from language files will be used over the one from config.js
+       translateAccessories = false;                   // If true, translated accessories from language files will be used over the one from config.js
+       translateTargetTypes = false;                   // If true, translated target types from language files will be used over the one from config.js
+       translateAlertMessages = false;                 // If true, translated alert messages from language files will be used.
        allowMultipleTargets = true;                    // If true, multiple targets can be selected at once. (You still cannot add multiple tilted targets.)
 
 const harmanFilters = [
@@ -261,9 +261,13 @@ let headerLogoText = "HarutoHiroki",
         url: "https://docs.google.com/spreadsheets/d/1DZTac1BxCLdmS2J4DDQyvKSVUZGnNhz2r86qMGcs_Jo/edit?pli=1#gid=330037169"
     },
     {
-        name: "Donate",
-        url: "https://ko-fi.com/harutohiroki"
+        name: "Discord",
+        url: "https://discord.harutohiroki.com"
     },
+//  {
+//      name: "Donate",
+//      url: "https://ko-fi.com/harutohiroki"
+//  },
     {
         name: "GitHub",
         url: "https://github.com/HarutoHiroki"
@@ -303,12 +307,12 @@ let tutorialDefinitions = [
     {
         name: 'Presence',
         width: '5.9%',
-        description: 'The presence range is responsible for the clarity and definition of a sound. Over-boosting can cause an irritating, harsh sound. Cutting in this range makes the sound more distant and transparent.'
+        description: 'The Presence range is responsible for the clarity and definition of a sound. Over-boosting can cause an irritating, harsh sound. Cutting in this range makes the sound more distant and transparent.'
     },
     {
-        name: 'Brilliance',
+        name: 'Treble',
         width: '17.4%',
-        description: 'The brilliance range is composed entirely of harmonics and is responsible for sparkle and air of a sound. Over boosting in this region can accentuate hiss and cause ear fatigue.'
+        description: 'The Treble range is composed entirely of harmonics and is responsible for sparkle and air of a sound. Over boosting in this region can accentuate hiss and cause ear fatigue.'
     }
 ]
 let whichTutorialDefinitionsToUse = tutorialDefinitions;

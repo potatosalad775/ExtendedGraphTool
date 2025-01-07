@@ -31,25 +31,31 @@ async function loadTranslations(lang) {
     const response = await fetch(`../assets/lang/${lang}_hp.json`);
     translations = await response.json();
 
-    // Set up header, tutorial, and accessories content if the language is English
-    if(lang == "en") {
-      whichHeaderLogoTextToUse = headerLogoText;
-      whichHeaderLinksToUse = headerLinks;
-      whichTutorialDefinitionsToUse = tutorialDefinitions;
-      whichAccessoriesToUse = simpleAbout;
+    // Set up header, tutorial, and accessories content
+    // Always use json content if available, otherwise use the default content
+    function isValidTranslation(translations, key) {
+      const parts = key.split('.');
+      let obj = translations;
+      for (let part of parts) {
+        if (!obj || !obj.hasOwnProperty(part)) {
+          return false;
+        }
+        obj = obj[part];
+      }
+      return true;
     }
-    // Otherwise, use translated content
-    else {
-      if (translateHeader) {
-        whichHeaderLogoTextToUse = translations.header.logoText || headerLogoText;
-        whichHeaderLinksToUse = translations.header.links || headerLinks;
-      }
-      if (translateTutorial) {
-        whichTutorialDefinitionsToUse = translations.tutorial || tutorialDefinitions;
-      }
-      if (translateAccessories) {
-        whichAccessoriesToUse = translations.accessories.content || simpleAbout;
-      }
+    
+    if (translateHeader && headerLogoText && isValidTranslation(translations, 'header.logoText')) {
+      whichHeaderLogoTextToUse = translations.header.logoText || headerLogoText;
+    }
+    if (translateHeader && headerLinks && isValidTranslation(translations, 'header.links') && translations.header.links.length === headerLinks.length) {
+      whichHeaderLinksToUse = translations.header.links || headerLinks;
+    }
+    if (translateTutorial && tutorialDefinitions && isValidTranslation(translations, 'tutorial')) {
+      whichTutorialDefinitionsToUse = translations.tutorial || tutorialDefinitions;
+    }
+    if (translateAccessories && simpleAbout && isValidTranslation(translations, 'accessories.content')) {
+      whichAccessoriesToUse = translations.accessories.content || simpleAbout;
     }
 
     // Update the page translations
@@ -278,12 +284,12 @@ function updateTranslations() {
 // Update Header Content
 function updateHeaderContent() {
   const logoImgElement = document.querySelector(".logo a img");
-  if (logoImgElement) {
+  if (logoImgElement && headerLogoImgUrl) {
     logoImgElement.src = whichHeaderLogoImgUrlToUse || headerLogoImgUrl;
   }
 
   const logoTextElement = document.querySelector(".logo a span");
-  if (logoTextElement) {
+  if (logoTextElement && headerLogoText) {
     logoTextElement.textContent = whichHeaderLogoTextToUse || headerLogoText;
   }
 
