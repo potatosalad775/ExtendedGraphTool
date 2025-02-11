@@ -96,21 +96,29 @@ doc.html(`
             <input type="number" inputmode="decimal" id="cusdf-tilt" value="`+ default_tilt +`" step="0.1""></input>
             <span>Tilt (dB/Oct)</span>
           </div>
+            <button class="cusdf-adjust-btn dec tilt">−</button>
+            <button class="cusdf-adjust-btn inc tilt">+</button>
           <div>
             <input type="number" inputmode="decimal" id="cusdf-bass" value="`+ default_bass_shelf +`" step="1""></input>
             <span>Bass (dB)</span>
           </div>
+            <button class="cusdf-adjust-btn dec bass">−</button>
+            <button class="cusdf-adjust-btn inc bass">+</button>
           <div>
             <input type="number" inputmode="decimal" id="cusdf-treb" value="`+ default_treble +`" step="0.1""></input>
             <span>Treble (dB)</span>
           </div>
+            <button class="cusdf-adjust-btn dec treble">−</button>
+            <button class="cusdf-adjust-btn inc treble">+</button>
           <div>
             <input type="number" inputmode="decimal" id="cusdf-ear" value="`+ default_ear +`" step="0.1""></input>
             <span>Ear Gain (dB)</span>
           </div>
-          <button id="cusdf-UnTiltTHIS" style="margin-right: 10px">Remove Adjustments</button>
-          <button id="cusdf-harmanfilters" style="margin-right: 10px">Harman Filters</button>
-          <button id="cusdf-bounds">Preference Bounds</button>
+            <button class="cusdf-adjust-btn dec ear">−</button>
+            <button class="cusdf-adjust-btn inc ear">+</button>
+          <button id="cusdf-UnTiltTHIS" style="margin-left: 10px">Remove Adjustments</button>
+          <button id="cusdf-harmanfilters" style="margin-left: 10px">Harman Filters</button>
+          <button id="cusdf-bounds" style="margin-left: 10px">Preference Bounds</button>
         </div>
         <table class="manageTable">
           <colgroup>
@@ -2442,6 +2450,50 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         if (!this.value.match(/^-?\d*(\.\d+)?$/)) return;
         treble = +this.value;
         updateDF(boost, tilt, ear, treble, "treble");
+    });
+
+    if (showCustomDFAdjustmentButton) {
+        document.querySelectorAll(".cusdf-adjust-btn").forEach(btn => { btn.classList.add("show") });
+    } else {
+        document.querySelectorAll(".cusdf-adjust-btn").forEach(btn => { btn.classList.remove("show") });
+    }
+    if (showCustomDFAdjustmentButtonOnDesktop) {
+        document.querySelectorAll(".cusdf-adjust-btn").forEach(btn => { btn.classList.add("showDesktop") });
+    } else {
+        document.querySelectorAll(".cusdf-adjust-btn").forEach(btn => { btn.classList.remove("showDesktop") });
+    }
+
+    doc.selectAll(".cusdf-adjust-btn").on("click", function () {
+        if (this.classList[1] === "inc") {
+            if (this.classList[2] === "bass") {
+                boost = parseFloat((boost + 1).toFixed(1));
+            }
+            else if (this.classList[2] === "tilt") {
+                tilt = parseFloat((tilt + 0.1).toFixed(1));
+            }
+            else if (this.classList[2] === "ear") {
+                ear = parseFloat((ear + 0.1).toFixed(1));
+            }
+            else if (this.classList[2] === "treble") {
+                treble = parseFloat((treble + 0.1).toFixed(1));
+            }
+        }
+        else if (this.classList[1] === "dec") {
+            if (this.classList[2] === "bass") {
+                boost = parseFloat((boost - 1).toFixed(1));
+            }
+            else if (this.classList[2] === "tilt") {
+                tilt = parseFloat((tilt - 0.1).toFixed(1));
+            }
+            else if (this.classList[2] === "ear") {
+                ear = parseFloat((ear - 0.1).toFixed(1));
+            }
+            else if (this.classList[2] === "treble") {
+                treble = parseFloat((treble - 0.1).toFixed(1));
+            }
+        }
+        updateDF(boost, tilt, ear, treble, this.classList[2]);
+        updateDispVals();
     });
                             
     // Harman Filters button
