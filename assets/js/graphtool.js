@@ -2458,7 +2458,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
     doc.selectAll(".cusdf-adjust-btn").on("click", function () {
         if (this.classList[1] === "inc") {
             if (this.classList[2] === "bass") {
-                boost = parseFloat((boost + 0.1).toFixed(1));
+                boost = parseFloat((boost + 1).toFixed(1));
             }
             else if (this.classList[2] === "tilt") {
                 tilt = parseFloat((tilt + 0.1).toFixed(1));
@@ -2472,7 +2472,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         }
         else if (this.classList[1] === "dec") {
             if (this.classList[2] === "bass") {
-                boost = parseFloat((boost - 0.1).toFixed(1));
+                boost = parseFloat((boost - 1).toFixed(1));
             }
             else if (this.classList[2] === "tilt") {
                 tilt = parseFloat((tilt - 0.1).toFixed(1));
