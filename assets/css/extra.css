@@ -171,7 +171,7 @@ div.customDF>div {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 10px 0 0;
+  padding: 0;
 }
 
 div.customDF>button+div {
@@ -279,6 +279,22 @@ div.customDF>button.selected,
   background-color: var(--accent-color)!important;
   border-color: var(--accent-color);
   color: var(--font-color-secondary)
+}
+
+div.customDF > .cusdf-adjust-btn {
+  display: none;
+  font-weight: bold;
+}
+div.customDF > .cusdf-adjust-btn.inc {
+  margin-right: 4px;
+}
+div.customDF > .cusdf-adjust-btn.show {
+  display: inline-block;
+}
+@media (min-width: 1001px) {
+  div.customDF > .cusdf-adjust-btn.show:not(.showDesktop) {
+    display: none;
+  }
 }
 
 .colorStylePicker select {
