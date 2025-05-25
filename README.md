@@ -2,10 +2,22 @@
 
 This repo is a fork of [PublicGraphTool](https://github.com/HarutoHiroki/PublicGraphTool) with additional features and modifications.
 
-Are you looking for a 'squig.link compatible' PublicGraphTool? Head over to ['squiglink' branch](https://github.com/potatosalad775/ExtendedGraphTool/tree/squiglink).
+## Disclaimer
+
+This project will not be maintained anymore. 
+
+But, you can check out my new project, [`modernGraphTool`](https://github.com/potatosalad/modernGraphTool) - a completely redesigned graphTool from ground up.
+
+### Squig.link compatibility
+
+Are you looking for a 'squig.link compatible' PublicGraphTool? 
+
+It seems like the [original PublicGraphTool](https://github.com/HarutoHiroki/PublicGraphTool) is now compatible with squig.link by default. You may want to check it out instead, since I'm no longer working on this project.
+
+However, you still might be able to find some useful tips for migration at my ['squiglink' branch](https://github.com/potatosalad775/ExtendedGraphTool/tree/squiglink).
 
 ## Demo Page
-N/A yet, but you can see my squig.link [here](https://silicagel.squig.link) atm.
+N/A yet, but you can see my squig.link [here](https://silicagel.squig.link/cringraph) atm.
 
 ## Additional Features
 
