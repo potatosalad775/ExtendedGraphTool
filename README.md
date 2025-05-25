@@ -6,7 +6,7 @@ This repo is a fork of [PublicGraphTool](https://github.com/HarutoHiroki/PublicG
 
 This project will not be maintained anymore. 
 
-But, you can check out my new project, [`modernGraphTool`](https://github.com/potatosalad/modernGraphTool) - a completely redesigned graphTool from ground up.
+But, you can check out my new project, [`modernGraphTool`](https://github.com/potatosalad775/modernGraphTool) - a completely redesigned graphTool from ground up.
 
 ### Squig.link compatibility
 
